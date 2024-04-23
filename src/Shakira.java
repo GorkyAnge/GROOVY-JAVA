@@ -1,3 +1,4 @@
+import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
 
 public class Shakira {
@@ -13,7 +14,15 @@ public class Shakira {
         this.stringScript = stringScript;
     }
 
-    public Object executeScript(String script) {
+   /* public Object executeScript(String script) {
+        return shell.evaluate(script);
+    }*/
+
+    public Object executeScript(String script, String variable) {
+        Binding binding = new Binding();
+        binding.setVariable("variable", variable);
+
+        GroovyShell shell = new GroovyShell(binding);
         return shell.evaluate(script);
     }
 
